@@ -676,3 +676,46 @@ ul { padding-left: 1.1rem; margin: .5rem 0 0; }
 }
 .news-card h3 { margin: 0; font-size: 1.05rem; }
 .news-card p { margin: 0; color: var(--muted); font-size: .92rem; flex: 1; }
+
+/* ── Podcast section ─────────────────────────────────── */
+.podcast-grid { align-items: stretch; }
+.podcast-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: border-color .25s, box-shadow .25s;
+  background: var(--card);
+  display: flex;
+  flex-direction: column;
+}
+.podcast-card:hover { border-color: var(--accent); box-shadow: 0 10px 28px rgba(17, 137, 95, 0.12); }
+.podcast-embed {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 0;
+  overflow: hidden;
+}
+.podcast-embed iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border: 0;
+}
+.podcast-body {
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+  padding: .9rem 1rem;
+  flex: 1;
+}
+.podcast-tag {
+  display: inline-block;
+  background: rgba(17, 137, 95, .1);
+  color: var(--accent);
+  font-size: .78rem;
+  font-weight: 600;
+  padding: .2rem .6rem;
+  border-radius: 20px;
+  width: fit-content;
+}
+.podcast-card h3 { margin: 0; font-size: 1rem; }
