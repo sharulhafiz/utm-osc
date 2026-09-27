@@ -627,7 +627,8 @@ ul { padding-left: 1.1rem; margin: .5rem 0 0; }
 
   /* Mobile: hamburger menu */
   .nav-wrap { flex-direction: row; flex-wrap: wrap; align-items: center; gap: .6rem; padding: .7rem 0; }
-  .brand { flex: 0 1 auto; min-width: 0; }
+  .brand { flex: 0 1 auto; min-width: 0; max-width: calc(100% - 56px); }
+  .brand-text { min-width: 0; }
   .nav-toggle { display: flex; order: 2; margin-left: auto; flex-shrink: 0; }
   .top-nav {
     order: 3;
@@ -649,7 +650,8 @@ ul { padding-left: 1.1rem; margin: .5rem 0 0; }
   .hero { padding: 2rem 0 1.6rem; }
   .brand-text { font-size: .9rem; }
   .brand { gap: .5rem; }
-  .brand-logo { height: 48px; }
+  .brand-logo { height: 44px; }
+  .brand-sub { display: none; }
   .hero-actions { flex-direction: column; }
   .stat-card { padding: .7rem; }
   .section-head p { max-width: 100%; }
