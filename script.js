@@ -1,5 +1,18 @@
 document.getElementById('year').textContent = new Date().getFullYear();
 
+// --- Mobile hamburger menu ---
+const navToggle = document.querySelector('.nav-toggle');
+const topNav = document.querySelector('.top-nav');
+if (navToggle && topNav) {
+  const setMenu = (open) => {
+    topNav.classList.toggle('open', open);
+    navToggle.setAttribute('aria-expanded', String(open));
+  };
+  navToggle.addEventListener('click', () => setMenu(!topNav.classList.contains('open')));
+  topNav.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setMenu(false)));
+  window.addEventListener('resize', () => { if (window.innerWidth > 900) setMenu(false); });
+}
+
 // --- Scroll Spy (nav highlight) ---
 const links = Array.from(document.querySelectorAll('.top-nav a[href^="#"]'));
 const sections = links
