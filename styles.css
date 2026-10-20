@@ -695,18 +695,6 @@ ul { padding-left: 1.1rem; margin: .5rem 0 0; }
   overflow: hidden;
   position: relative;
 }
-.news-card .news-img {
-  display: block;
-  width: 100%;
-  height: 0;
-  padding-bottom: 56.25%;
-  background-color: var(--accent-light);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  overflow: hidden;
-  position: relative;
-}
 .news-card .news-img img {
   position: absolute;
   inset: 0;
@@ -729,6 +717,67 @@ ul { padding-left: 1.1rem; margin: .5rem 0 0; }
 }
 .news-card h3 { margin: 0; font-size: 1.05rem; }
 .news-card p { margin: 0; color: var(--muted); font-size: .92rem; flex: 1; }
+
+/* ===== Events & Training ===== */
+.one { grid-template-columns: 1fr; }
+.event-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 0 !important;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+.event-card:hover { border-color: var(--accent); box-shadow: 0 10px 28px rgba(17, 137, 95, 0.12); }
+.event-img {
+  display: block;
+  width: 100%;
+  height: 0;
+  padding-bottom: 62.5%;
+  background-color: var(--accent-light);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+.event-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+.event-body { display: flex; flex-direction: column; gap: .6rem; padding: 1.2rem; }
+.event-tag {
+  align-self: flex-start;
+  background: var(--accent-light);
+  color: var(--accent-dark);
+  font-size: .75rem;
+  font-weight: 600;
+  padding: .15rem .6rem;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+.event-card h3 { margin: 0; font-size: 1.2rem; }
+.event-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin: 0;
+  color: var(--muted);
+  font-size: .88rem;
+}
+.event-desc, .event-qual, .event-cert, .event-fee {
+  margin: 0;
+  color: var(--text);
+  font-size: .92rem;
+  line-height: 1.6;
+}
+.event-qual, .event-cert, .event-fee { color: var(--muted); }
+.event-actions { display: flex; gap: .6rem; flex-wrap: wrap; margin-top: .5rem; }
 
 /* ── Podcast section ─────────────────────────────────── */
 .podcast-grid { align-items: stretch; }
