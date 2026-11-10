@@ -15,9 +15,12 @@ source of truth; the live host is a read-only deployment target.
 - `src/` — images (`postN-slug.jpg`, logos) and PDFs linked from the page.
 - `sync-osc.sh` — reference copy of the host sync script (§3); not run from the repo.
 
-Section ids in page order: `overview`, (pathways), `components`, `education-tracks`,
+Section ids in page order: `overview`, `pathways-content`, `components`, `education-tracks`,
 `operating-model`, `objectives`, `governance`, `roadmap`, `impact`, `partners`,
-`events-training`, `news`. Nav and scroll-spy key off them: a new section needs a nav link.
+`events-training`, `news`, `podcast`, `contact` (plus the structural ids `top`, `top-nav` and
+`year`). Nav and scroll-spy only cover `top`, `overview`, `components`, `education-tracks`,
+`operating-model`, `governance`, `roadmap`, `impact` and `news`; the remaining sections are
+reachable by scroll only, so a new section needs a nav link only when it must appear in the menu.
 
 ## 2. Editing conventions
 
@@ -36,8 +39,10 @@ Section ids in page order: `overview`, (pathways), `components`, `education-trac
   ```
 - Verify every fact (title, date, wording, link) against the real source. Never invent
   people, dates or metadata; if a source is inaccessible, report a blocker instead.
-- Images: files in `src/`, named `postN-slug.jpg`, target **< 500 KB**, with an `alt` that
-  describes what the image shows. Replacements at an existing path need a new `?v=YYYYMMDD`
+- Images: files in `src/`, named `postN-slug.jpg`, target **< 500 KB for new files**, with an
+  `alt` that describes what the image shows. Existing files above the target are grandfathered,
+  not in scope (`src/rem-type1-training.png` 3.5 MB, `src/785A1801-scaled.jpg` 895 KB, and the two
+  brochure PDFs at 2.1 MB and 4.1 MB). Replacements at an existing path need a new `?v=YYYYMMDD`
   cache-buster on that reference; likewise bump `styles.css?v=…` / `script.js?v=…` when
   editing those files.
 - Accessibility: meaningful `alt` on every image, keep `aria-*` and `rel="noopener"`, and
@@ -51,7 +56,8 @@ Section ids in page order: `overview`, (pathways), `components`, `education-trac
   `git@github.com:sharulhafiz/utm-osc.git`, `main` tracking `origin/main`; www1 `/data` is
   the NFS mount `sharestore.utm.my:/export/pool1/wwwdata`.
 - The same export is mounted read-only into swarm service `chancellery_nginx` (image
-  `registry.utm.my/utmmy/wp-nginx:8.3-lean`, replicas on www1 and www8) as volume
+  `registry.utm.my/utmmy/wp-nginx:8.3-lean`, two replicas — placement drifts, read
+  `docker service ps chancellery_nginx` rather than trusting node names) as volume
   `chancellery_osc-static-nfs-wwwdata` → `/data/static/osc` in the container.
 - nginx: `location = /osc` → 301 `/osc/`; `location ^~ /osc/` → `alias /data/static/osc/`
   with `index index.html`. The rule lives in Web-Ops
@@ -94,8 +100,9 @@ Section ids in page order: `overview`, (pathways), `components`, `education-trac
   `OSC synced: <old> -> <new>` and the live checkout's `HEAD` equals `origin/main` equals
   the merged SHA.
 - **Live:** `curl -s https://sustainable.utm.my/osc/ | sha256sum` equals
-  `git cat-file blob HEAD:index.html | sha256sum` (2026-10-25 baseline `1399f1dd…6e1d9c` at
-  commit `4f60400`), plus a browser check of the changed area.
+  `git cat-file blob HEAD:index.html | sha256sum` (illustrative baseline: `331d95c7…bde9fd` at
+  commit `6801271` — the hash changes with every content commit, so re-derive it instead of
+  comparing against this example), plus a browser check of the changed area.
 - Report committed, deployed and verified-live as three separate states with evidence.
 
 ## 7. Where to look next

@@ -1,6 +1,8 @@
 #!/bin/bash
 # sync-osc.sh — pull OSC content from GitHub to NFS
-# Place in devops crontab: * * * * * /home/devops/bin/sync-osc.sh
+# Place in devops crontab: 0-59/5 * * * * /home/devops/bin/sync-osc.sh
+# A bare "* * * * *" is rejected by cronie -- Web-Ops #307. The leading
+# "0-59/5" form is what is deployed and documented in AGENTS.md.
 set -e
 cd /data/sites/chancellery/osc/httpdocs
 git fetch origin -q 2>/dev/null || exit 0
